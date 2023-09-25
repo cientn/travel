@@ -154,3 +154,18 @@ def searching(condition):
     finally:
         del sql, conn, result
         return list_result
+
+
+def row_collect(stt):
+    sql = f"SELECT * FROM ticket WHERE stt='{stt}'"
+    result = None
+    try:
+        conn = Connect()
+        cusor = conn.cursor()
+        cusor.execute(sql)
+        result = cusor.fetchone()
+    except:
+        print('Error', sys.exc_info())
+    finally:
+        del sql, conn
+        return result

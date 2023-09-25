@@ -8,7 +8,7 @@ from tkinter import Tk, Canvas, Entry, Button, messagebox, NW, ttk
 from tkcalendar import DateEntry, Calendar
 from datetime import datetime, date
 import tkinter as tk
-from backend.controlbackend import airport, add_ticket, retrieve_ticket, searching
+from backend.controlbackend import airport, add_ticket, retrieve_ticket, searching, row_collect
 from middleware.ticket import Ticket
 
 
@@ -896,12 +896,16 @@ class Home:
             width=98.0,
             height=22.0
         )
+
         # --------------------------------------------------------------------------------------------------------------
         # chọn row và edit
-        # def edit_row():
-        selected_item = table.focus()
-        row_values = table.item(selected_item).get('value')
-        print(row_values)
+        def select_row(self):
+            selected_item = table.focus()
+            row_values = row_collect(selected_item)
+            if row_values != None:
+                print(row_values)
+
+        table.bind("<<TreeviewSelect>>", select_row)
         # ---------------------------------------------------------------------------------------------------------------
 
 
